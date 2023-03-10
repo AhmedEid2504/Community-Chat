@@ -3,12 +3,13 @@
 window.onload = function() {
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAZlzMIHjjXS97KS8kj5KYH4nKi5w8gVzs",
-    authDomain: "community-chat-72962.firebaseapp.com",
-    projectId: "community-chat-72962",
-    storageBucket: "community-chat-72962.appspot.com",
-    messagingSenderId: "173069210131",
-    appId: "1:173069210131:web:e1abc16d03a1d8daef25e6"
+    apiKey: "AIzaSyBDsRyliIzH-q8Bp9h5f1wLVkhe7o3AG4Y",
+    authDomain: "community-chat-ed9f3.firebaseapp.com",
+    databaseURL: "https://community-chat-ed9f3-default-rtdb.firebaseio.com",
+    projectId: "community-chat-ed9f3",
+    storageBucket: "community-chat-ed9f3.appspot.com",
+    messagingSenderId: "420396201205",
+    appId: "1:420396201205:web:ea1720eae974436c4501bc"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
