@@ -3,19 +3,19 @@
 window.onload = function() {
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAZlzMIHjjXS97KS8kj5KYH4nKi5w8gVzs",
-  authDomain: "community-chat-72962.firebaseapp.com",
-  projectId: "community-chat-72962",
-  storageBucket: "community-chat-72962.appspot.com",
-  messagingSenderId: "173069210131",
-  appId: "1:173069210131:web:e1abc16d03a1d8daef25e6"
-};
+    apiKey: "AIzaSyAZlzMIHjjXS97KS8kj5KYH4nKi5w8gVzs",
+    authDomain: "community-chat-72962.firebaseapp.com",
+    projectId: "community-chat-72962",
+    storageBucket: "community-chat-72962.appspot.com",
+    messagingSenderId: "173069210131",
+    appId: "1:173069210131:web:e1abc16d03a1d8daef25e6"
+  };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   // This is very IMPORTANT!! We're going to use "db" a lot.
   var db = firebase.database()
   // We're going to use oBjEcT OrIeNtEd PrOgRaMmInG. Lol
-  class MEME_CHAT{
+  class COMMUNITY_CHAT{
     // Home() is used to create the home page
     home(){
       // First clear the body before adding in
@@ -68,7 +68,7 @@ const firebaseConfig = {
       var join_input = document.createElement('input')
       join_input.setAttribute('id', 'join_input')
       join_input.setAttribute('maxlength', 15)
-      join_input.placeholder = 'No.... It\'s Patrick Star'
+      join_input.placeholder = 'Type Your Name'
       // Every time we type into the join_input
       join_input.onkeyup  = function(){
         // If the input we have is longer that 0 letters
@@ -172,10 +172,26 @@ const firebaseConfig = {
             // Focus on the input just after
             chat_input.focus()
           }
-        }else{
-          chat_input_send.classList.remove('enabled')
         }
       }
+
+        chat_input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+
+            if(chat_input.value.length > 0){
+                chat_input_send.removeAttribute('disabled')
+                chat_input_send.classList.add('enabled')
+                // Send the message. Pass in the chat_input.value
+                parent.send_message(chat_input.value)
+                // Clear the chat input box
+                chat_input.value = ''
+                // Focus on the input just after
+                chat_input.focus()
+                }
+        }
+        });
+    
+    
 
       var chat_logout_container = document.createElement('div')
       chat_logout_container.setAttribute('id', 'chat_logout_container')
@@ -254,9 +270,6 @@ const firebaseConfig = {
           return
         }
 
-        // OK! SO IF YOU'RE A ROOKIE CODER. THIS IS GOING TO BE
-        // SUPER EASY-ISH! I THINK. MAYBE NOT. WE'LL SEE!
-
         // convert the message object values to an array.
         var messages = Object.values(messages_object.val());
         var guide = [] // this will be our guide to organizing the messages
@@ -270,7 +283,6 @@ const firebaseConfig = {
           unordered.push([messages[i], messages[i].index]);
         }
 
-        // Now this is straight up from stack overflow 🤣
         // Sort the unordered messages by the guide
         guide.forEach(function(key) {
           var found = false
@@ -324,8 +336,8 @@ const firebaseConfig = {
 
     }
   }
-  // So we've "built" our app. Let's make it work!!
-  var app = new MEME_CHAT()
+
+  var app = new COMMUNITY_CHAT()
   // If we have a name stored in localStorage.
   // Then use that name. Otherwise , if not.
   // Go to home.
