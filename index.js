@@ -1,5 +1,3 @@
-// We enclose this in window.onload.
-// So we don't have ridiculous errors.
 window.onload = function() {
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,9 +11,8 @@ const firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  // This is very IMPORTANT!! We're going to use "db" a lot.
+
   var db = firebase.database()
-  // We're going to use oBjEcT OrIeNtEd PrOgRaMmInG. Lol
   class COMMUNITY_CHAT{
     // Home() is used to create the home page
     home(){
@@ -48,7 +45,6 @@ const firebaseConfig = {
     }
     // create_join_form() creates the join form
     create_join_form(){
-      // YOU MUST HAVE (PARENT = THIS). OR NOT. I'M NOT YOUR BOSS!😂
       var parent = this;
 
       var join_container = document.createElement('div')
@@ -103,10 +99,10 @@ const firebaseConfig = {
     }
     // create_load() creates a loading circle that is used in the chat container
     create_load(container_id){
-      // YOU ALSO MUST HAVE (PARENT = THIS). BUT IT'S WHATEVER THO.
+ 
       var parent = this;
 
-      // This is a loading function. Something cool to have.
+      // This is a loading function
       var container = document.getElementById(container_id)
       container.innerHTML = ''
 
@@ -124,7 +120,6 @@ const firebaseConfig = {
     create_chat(){
       // Again! You need to have (parent = this)
       var parent = this;
-      // GET THAT MEMECHAT HEADER OUTTA HERE
       var title_container = document.getElementById('title_container')
       var title = document.getElementById('title')
       title_container.classList.add('chat_title_container')
@@ -226,9 +221,7 @@ const firebaseConfig = {
     send_message(message){
       var parent = this
       // if the local storage name is null and there is no message
-      // then return/don't send the message. The user is somehow hacking
-      // to send messages. Or they just deleted the
-      // localstorage themselves. But hacking sounds cooler!!
+      // then return/don't send the message
       if(parent.get_name() == null && message == null){
         return
       }
