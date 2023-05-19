@@ -46,7 +46,6 @@ const firebaseConfig = {
     // create_join_form() creates the join form
     create_join_form(){
       var parent = this;
-
       var join_container = document.createElement('div')
       join_container.setAttribute('id', 'join_container')
       var join_inner_container = document.createElement('div')
@@ -63,32 +62,29 @@ const firebaseConfig = {
       join_input_container.setAttribute('id', 'join_input_container')
 
       var join_input = document.createElement('input')
-      join_input.setAttribute('id', 'join_input')
-      join_input.setAttribute('maxlength', 15)
-      join_input.placeholder = 'Type Your Name'
+      // join_input.setAttribute('id', 'join_input')
+      // join_input.setAttribute('maxlength', 15)
+      // join_input.placeholder = 'Type Your Name'
       // Every time we type into the join_input
-      join_input.onkeyup  = function(){
+      // join_input.onkeyup  = function(){
         // If the input we have is longer that 0 letters
-        if(join_input.value.length > 0){
+        // if(join_input.value.length > 0){
           // Make the button light up
           join_button.classList.add('enabled')
-          // Allow the user to click the button
           join_button.onclick = function(){
-            // Save the name to local storage. Passing in
-            // the join_input.value
-            parent.save_name(join_input.value)
+            parent.get_name()
             // Remove the join_container. So the site doesn't look weird.
             join_container.remove()
             // parent = this. But it is not the join_button
             // It is (MEME_CHAT = this).
             parent.create_chat()
           }
-        }else{
-          // If the join_input is empty then turn off the
-          // join button
-          join_button.classList.remove('enabled')
-        }
-      }
+        // }else{
+        //   // If the join_input is empty then turn off the
+        //   // join button
+        //   join_button.classList.remove('enabled')
+        // }
+      // }
 
       // Append everything to the body
       join_button_container.append(join_button)
@@ -197,8 +193,8 @@ const firebaseConfig = {
       chat_logout.textContent = `${parent.get_name()} • logout`
       // "Logout" is really just deleting the name from the localStorage
       chat_logout.onclick = function(){
-        localStorage.clear()
-        // Go back to home page
+        // localStorage.clear()
+        // // Go back to home page
         parent.home()
       }
 
@@ -213,10 +209,10 @@ const firebaseConfig = {
       parent.refresh_chat()
     }
     // Save name. It literally saves the name to localStorage
-    save_name(name){
-      // Save name to localStorage
-      localStorage.setItem('name', name)
-    }
+    // save_name(name){
+    //   // Save name to localStorage
+    //   localStorage.setItem('name', name)
+    // }
     // Sends message/saves the message to firebase database
     send_message(message){
       var parent = this
@@ -244,11 +240,11 @@ const firebaseConfig = {
     // Get name. Gets the username from localStorage
     get_name(){
       // Get the name from localstorage
-      if(localStorage.getItem('name') != null){
-        return localStorage.getItem('name')
+      if(localStorage.getItem('profileData') != null){
+        return JSON.parse(localStorage.getItem('profileData')).firstName;
       }else{
         this.home()
-        return null
+        return null;
       }
     }
     // Refresh chat gets the message/chat data from firebase
